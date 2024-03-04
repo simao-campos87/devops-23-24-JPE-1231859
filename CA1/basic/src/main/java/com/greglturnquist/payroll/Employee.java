@@ -33,12 +33,24 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String description;
-    private String jobYears;
+    private int jobYears;
 
     private Employee() {
     }
 
-    public Employee(String firstName, String lastName, String description) {
+    public Employee(String firstName, String lastName, String description, int jobYears) {
+        if (firstName == null  || firstName.isEmpty()) {
+            throw new IllegalArgumentException("First name cannot be null");
+        }
+        if (lastName == null || lastName.isEmpty()) {
+            throw new IllegalArgumentException("Last name cannot be null");
+        }
+        if (description == null || description.isEmpty()) {
+            throw new IllegalArgumentException("Description cannot be null");
+        }
+        if (jobYears < 0) {
+            throw new IllegalArgumentException("Job years cannot be negative");
+        }
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
@@ -54,7 +66,7 @@ public class Employee {
                 Objects.equals(firstName, employee.firstName) &&
                 Objects.equals(lastName, employee.lastName) &&
                 Objects.equals(description, employee.description) &&
-                Objects.equals(jobYears, employee.jobYears);
+                jobYears == employee.jobYears;
     }
 
     @Override
@@ -95,11 +107,11 @@ public class Employee {
         this.description = description;
     }
 
-    public String getJobYears() {
+    public int getJobYears() {
         return jobYears;
     }
 
-    public void setJobYears(String jobYears) {
+    public void setJobYears(int jobYears) {
         this.jobYears = jobYears;
     }
 
