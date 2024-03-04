@@ -20,6 +20,8 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author Greg Turnquist
@@ -35,10 +37,14 @@ public class Employee {
     private String description;
     private int jobYears;
 
+    @NotNull
+    @Email (message = "Email cannot be null")
+    private String email;
+
     private Employee() {
     }
 
-    public Employee(String firstName, String lastName, String description, int jobYears) {
+    public Employee(String firstName, String lastName, String description, int jobYears, String email) {
         if (firstName == null  || firstName.isEmpty()) {
             throw new IllegalArgumentException("First name cannot be null");
         }
@@ -51,10 +57,14 @@ public class Employee {
         if (jobYears < 0) {
             throw new IllegalArgumentException("Job years cannot be negative");
         }
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be null");
+        }
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
         this.jobYears = jobYears;
+        this.email = email;
     }
 
     @Override
@@ -66,13 +76,14 @@ public class Employee {
                 Objects.equals(firstName, employee.firstName) &&
                 Objects.equals(lastName, employee.lastName) &&
                 Objects.equals(description, employee.description) &&
-                jobYears == employee.jobYears;
+                jobYears == employee.jobYears
+                && Objects.equals(email, employee.email);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, firstName, lastName, description, jobYears);
+        return Objects.hash(id, firstName, lastName, description, jobYears, email);
     }
 
     public Long getId() {
@@ -115,6 +126,14 @@ public class Employee {
         this.jobYears = jobYears;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -123,7 +142,7 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", description='" + description + '\'' +
                 ", jobYears='" + jobYears + '\'' +
-                '}';
+                '}' + ", email='" + email + '\'';
     }
 }
 // end::code[]
