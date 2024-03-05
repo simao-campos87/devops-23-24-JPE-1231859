@@ -38,33 +38,19 @@ public class Employee {
     private int jobYears;
 
     @NotNull
-    @Email (message = "Email cannot be null")
+    @Email(message = "Email cannot be null")
     private String email;
 
     private Employee() {
     }
 
     public Employee(String firstName, String lastName, String description, int jobYears, String email) {
-        if (firstName == null  || firstName.isEmpty()) {
-            throw new IllegalArgumentException("First name cannot be null");
-        }
-        if (lastName == null || lastName.isEmpty()) {
-            throw new IllegalArgumentException("Last name cannot be null");
-        }
-        if (description == null || description.isEmpty()) {
-            throw new IllegalArgumentException("Description cannot be null");
-        }
-        if (jobYears < 0) {
-            throw new IllegalArgumentException("Job years cannot be negative");
-        }
-        if (email == null || email.isEmpty()) {
-            throw new IllegalArgumentException("Email cannot be null");
-        }
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.description = description;
-        this.jobYears = jobYears;
-        this.email = email;
+
+        setFirstName(firstName);
+        setLastName(lastName);
+        setDescription(description);
+        setJobYears(jobYears);
+        setEmail(email);
     }
 
     @Override
@@ -99,6 +85,9 @@ public class Employee {
     }
 
     public void setFirstName(String firstName) {
+        if (firstName == null || firstName.isEmpty()) {
+            throw new IllegalArgumentException("First name cannot be null");
+        }
         this.firstName = firstName;
     }
 
@@ -107,14 +96,22 @@ public class Employee {
     }
 
     public void setLastName(String lastName) {
+
+        if (lastName == null || lastName.isEmpty()) {
+            throw new IllegalArgumentException("Last name cannot be null");
+        }
         this.lastName = lastName;
     }
 
     public String getDescription() {
+
         return description;
     }
 
     public void setDescription(String description) {
+        if (description == null || description.isEmpty()) {
+            throw new IllegalArgumentException("Description cannot be null");
+        }
         this.description = description;
     }
 
@@ -123,14 +120,25 @@ public class Employee {
     }
 
     public void setJobYears(int jobYears) {
+
+        if (jobYears < 0) {
+            throw new IllegalArgumentException("Job years cannot be negative");
+        }
         this.jobYears = jobYears;
     }
 
     public String getEmail() {
+
         return email;
     }
 
     public void setEmail(String email) {
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be null");
+        }
+        if (!EmailValidator.isValid(email)) {
+            throw new IllegalArgumentException("Email is not valid");
+        }
         this.email = email;
     }
 

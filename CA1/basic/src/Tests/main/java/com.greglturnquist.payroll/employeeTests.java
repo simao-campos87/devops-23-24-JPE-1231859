@@ -243,4 +243,24 @@ public class employeeTests {
         });
         assertEquals(exceptionMessage, exception.getMessage());
     }
+
+    @Test
+    public void testIfEmailIsValid() {
+        //Arrange
+        String firstName = "Frodo";
+        String lastName = "Baggins";
+        String description = "ring bearer";
+        int jobYears = 4;
+        String email = "invalid.com";
+
+        String exceptionMessage = "Email is not valid";
+
+        //Act + Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Employee(firstName, lastName, description, jobYears, email);
+        });
+        assertEquals(exceptionMessage, exception.getMessage());
+    }
+
 }
+
