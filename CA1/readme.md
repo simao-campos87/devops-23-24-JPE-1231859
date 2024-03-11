@@ -26,6 +26,12 @@ The .gitignore file should be created to avoid the inclusion of unnecessary file
 On the given website the .gitignore file content can be copied and pasted to the file using the nano command.
 I recommend to add the .idea directory to the .gitignore file.
 
+If the login windows doesn't appear, the following command can be used to set the credentials.
+```bash
+git config --global user.name "[firstname lastname]"
+git config --global user.email [valid-email]
+```
+
 ```bash  
 touch .gitignore
 nano .gitignore
