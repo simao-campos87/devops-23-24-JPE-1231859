@@ -139,7 +139,7 @@ Create a new branch to add a new email field to the application. After implement
     git commit -m "#x Add email field to Employee entity."
     git push origin email-field
     git checkout main
-    git merge email-field
+    git merge email-field --no-ff
     git push origin main
     git tag v1.3.0
     git push origin v1.3.0
@@ -158,7 +158,7 @@ Tests should be created to ensure that only valid email addresses are accepted.
     git commit -m "#x Fix invalid email issue."
     git push origin fix-invalid-email
     git checkout main
-    git merge fix-invalid-email
+    git merge fix-invalid-email --no-ff
     git push origin main
     git tag v1.3.1
     git push origin v1.3.1
