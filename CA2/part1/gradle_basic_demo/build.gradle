@@ -77,8 +77,8 @@ task backupSources(type: Copy) {
     into 'backup'
 }
 
-task zipSources(type: Zip, dependsOn: backupSources) {
-    from 'backup'
+task zipSources(type: Zip) {
+    from 'src'
     archiveFileName = 'src.zip'
     destinationDir file('backup')
 }
