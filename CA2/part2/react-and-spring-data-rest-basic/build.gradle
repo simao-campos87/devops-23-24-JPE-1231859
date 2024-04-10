@@ -41,3 +41,9 @@ task copyJar(type: Copy) {
 	from jar.archiveFile
 	into 'dist'
 }
+
+task cleanWebpack(type: Delete) {
+    delete 'src/main/resources/static/built'
+}
+
+clean.dependsOn cleanWebpack
