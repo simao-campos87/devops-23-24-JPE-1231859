@@ -34,3 +34,10 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+task copyJar(type: Copy) {
+	dependsOn jar
+
+	from jar.archiveFile
+	into 'dist'
+}
