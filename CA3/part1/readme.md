@@ -44,9 +44,6 @@ create folder
 mkdir CA3
 cd CA3
 
-
-git init
-
 git clone https://github.com/simao-campos87/devops-23-24-JPE-1231859.git
 (repository must be public)
 ```
