@@ -28,6 +28,7 @@ java -version
 ```
 
 ### 4. install gradle version 8.6
+This step may not be needed, since the project already has the gradle wrapper. On my case when I run gradle wrapper, it installed a version 7.2.1, witch didn't work for the project. So I had to install the version 8.6.
 ```bash
 wget https://services.gradle.org/distributions/gradle-8.6-bin.zip
 sudo mkdir /opt/gradle
@@ -39,7 +40,7 @@ gradle -v
 ```
 
 ### 5. clone the repository
-create folder
+create folder and clone project
 ```bash
 mkdir CA3
 cd CA3
@@ -93,6 +94,4 @@ ip addr
 ```
 put the IP and the port 8080 on the browser address.
 
-## Notes:
-The gradle command is an alternative to the gradlew command but it didn't always worked for me, the gradlew comands were more reliable.
 
