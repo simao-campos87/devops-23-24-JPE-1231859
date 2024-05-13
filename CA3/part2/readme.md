@@ -40,12 +40,57 @@ chmod u+x gradlew
 ./gradlew clean build
 ./gradlew bootRun
 ```
+
+### 6. Edit the H2 database configurations, so the project can read from the db and show the entries on the web page.
+Following the commits on the repository, we can see the changes made to the project.
+Edit the application.properties file on the CA2-part2 project to use the H2 database, so the project can run from it.
+```bash
+server.servlet.context-path=/basic-0.0.1-SNAPSHOT
+spring.data.rest.base-path=/api
+#spring.datasource.url=jdbc:h2:mem:jpadb
+## In the following settings the h2 file is created in /home/vagrant folder
+spring.datasource.url=jdbc:h2:tcp://192.168.56.11:9092/./jpadb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+# So that spring will no drop de database on every execution.
+spring.jpa.hibernate.ddl-auto=update
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+spring.h2.console.settings.web-allow-others=true
+```
+Edit app.js file
+```bash
+(...)
+client({method: 'GET', path: '/basic-0.0.1-SNAPSHOT/api/employees'}).done(response => {
+(...)
+```
+Edit the index.html file on the templates folder
+```bash
+(...)
+<link rel="stylesheet" href="main.css" />
+  ```
+Commit to the remote repository the changes made to the project.
+
+To access the H2 database, we need to access the address: http://192.168.56.11:8082.
+
+On the H2 console, on JDBC URL, insert the following: `jdbc:h2:tcp://192.168.56.11:9092/./jpadb`.
+The remaining fields are the default ones.
+
+![image1](../part2/images/h2-console.png)
+
+
+Using the `select * from entry;` command, we can see the entries on the database.
+Using the insert command, we can insert new entries on the database.
+
 ### 6. Run the project
 Run the project with the command `vagrant up`.
 
 If not working, run `vagrant destroy`, to delete the machines and then `vagrant up`.
-On the web browser, access the address `http://192.168.10:8080` to verify application working. This address is defined on the Vagrantfile foe the 'web' machine.
+On the web browser, access the address `http://192.168.56.10:8080/basic-0.0.1-SNAPSHOT/` to verify application working. This address is defined on the Vagrantfile from the 'web' machine.
 
+![image2](../part2/images/web-page.png)
 ### 7. Stop the project
 To stop the project, run the command `vagrant halt`.
 
