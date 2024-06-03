@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a technical report for de Class Assignment 4 - Part 1, of the DevOps class from the "Switch - Curso de Especialização em Desenvolvimento de Software" made by Simão Campos, student nº 1231859.
+This is a technical report for de Class Assignment 4 - Part 2, of the DevOps class from the "Switch - Curso de Especialização em Desenvolvimento de Software" made by Simão Campos, student nº 1231859.
 
 The following report is a technical document that provides a detailed account of the steps taken to complete the assignment, including the commands used, the issues encountered, and the solutions implemented. The tutorial section provides a step-by-step guide to the assignment tasks.
 
