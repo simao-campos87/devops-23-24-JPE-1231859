@@ -8,14 +8,11 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/simao-campos87/devops-23-24-JPE-1231859.git'
             }
         }
-        stage('Assemble') {
+      stage('Build') {
             steps {
-                echo 'Assembling...'
-                dir('CA2/part1/gradle_basic_demo') {
-                    sh 'chmod +x ./gradlew'
-                    sh './gradlew clean assemble'
-                }
-            }
+                echo 'Building...'
+                    sh './gradlew clean build'
+             }
         }
         stage('Test') {
             steps {
