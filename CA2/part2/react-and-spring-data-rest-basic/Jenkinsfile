@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        registry = '1231859/react-and-spring-data'
-        registryCredential = 'dockerhub_credentials'
+        registry = '1231859/ca2-part2-jenkins'
+        registryCredential = 'docker'
     }
 
     stages {
