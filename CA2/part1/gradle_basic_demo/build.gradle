@@ -80,6 +80,7 @@ task backupSources(type: Copy) {
 task zipSources(type: Zip) {
     from 'src'
     archiveFileName = 'src.zip'
-    destinationDir file('backup')
+    destinationDirectory = file('backup')
 }
+
 
