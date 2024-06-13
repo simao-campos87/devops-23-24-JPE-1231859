@@ -21,15 +21,18 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-                dir('ca2/part2/react-and-spring-data-rest-basic') {
-                    sh './gradlew test'
-                    junit 'build/test-results/test/*.xml'
-                }
-            }
-        }
+         stage('Test') {
+             steps {
+                 echo 'Running tests...'
+                 dir('ca2/part2/react-and-spring-data-rest-basic') {
+                     sh './gradlew test'
+                     // List the contents of the test results directory for debugging purposes
+                     sh 'ls -l build/test-results/test'
+                 }
+                 // Use the correct path to find the test result XML files
+                 junit 'ca2/part2/react-and-spring-data-rest-basic/build/test-results/test/*.xml'
+             }
+         }
         stage('Javadoc') {
             steps {
                 echo 'Generating Javadoc...'
