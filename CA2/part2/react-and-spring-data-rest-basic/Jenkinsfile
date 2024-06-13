@@ -15,7 +15,7 @@ pipeline {
         stage('Assemble') {
             steps {
                 echo 'Assembling application...'
-                dir('ca2/part2/react-and-spring-rest-data-basic') {
+                dir('ca2/part2/react-and-spring-data-rest-basic') {
                     sh 'chmod +x ./gradlew'
                     sh './gradlew clean assemble'
                 }
@@ -24,7 +24,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                dir('ca2/part2/react-and-spring-rest-data-basic') {
+                dir('ca2/part2/react-and-spring-data-rest-basic') {
                     sh './gradlew test'
                     junit 'build/test-results/test/*.xml'
                 }
@@ -33,7 +33,7 @@ pipeline {
         stage('Javadoc') {
             steps {
                 echo 'Generating Javadoc...'
-                dir('ca2/part2/react-and-spring-rest-data-basic') {
+                dir('ca2/part2/react-and-spring-data-rest-basic') {
                     sh './gradlew javadoc'
                     publishHTML(target: [
                         allowMissing: false,
@@ -49,7 +49,7 @@ pipeline {
         stage('Archive') {
             steps {
                 echo 'Archiving artifacts...'
-                dir('ca2/part2/react-and-spring-rest-data-basic') {
+                dir('ca2/part2/react-and-spring-data-rest-basic') {
                     archiveArtifacts 'build/libs/*.jar'
                 }
             }
@@ -57,7 +57,7 @@ pipeline {
         stage('Publish Image') {
             steps {
                 echo 'Building and pushing Docker image...'
-                dir('ca2/part2/react-and-spring-rest-data-basic') {
+                dir('ca2/part2/react-and-spring-data-rest-basic') {
                     script {
                         // Building the Docker image with a tag that includes the build number
                         def appImage = docker.build("1231859/springboot-app:${env.BUILD_NUMBER}")
