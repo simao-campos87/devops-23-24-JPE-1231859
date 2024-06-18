@@ -101,5 +101,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Run Container') {
+            steps {
+                script {
+                    echo 'Running Docker container...'
+                    sh "docker run -d -p 8080:8080 ${DOCKER_IMAGE}:latest"
+                }
+            }
+        }
     }
 }
