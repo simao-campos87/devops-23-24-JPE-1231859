@@ -19,7 +19,7 @@ pipeline {
             steps {
                 dir('ca2/part2/react-and-spring-data-rest-basic') {
                     echo 'Setting executable permissions on gradlew...'
-                    bat 'gradlew.bat'
+                    bat 'gradlew'
                 }
             }
         }
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 dir('ca2/part2/react-and-spring-data-rest-basic') {
                     echo 'Assembling the application...'
-                    bat './gradlew.bat assemble'
+                    bat './gradlew assemble'
                 }
             }
         }
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 dir('ca2/part2/react-and-spring-data-rest-basic') {
                     echo 'Running unit tests...'
-                    bat './gradlew.bat test'
+                    bat './gradlew test'
                 }
             }
         }
@@ -46,7 +46,7 @@ pipeline {
             steps {
                 dir('ca2/part2/react-and-spring-data-rest-basic') {
                     echo 'Generating Javadoc...'
-                    bat './gradlew.bat javadoc'
+                    bat './gradlew javadoc'
                     publishHTML(target: [
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
