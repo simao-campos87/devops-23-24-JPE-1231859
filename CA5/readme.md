@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a technical report for de Class Assignment 4 - Part 2, of the DevOps class from the "Switch - Curso de Especialização em Desenvolvimento de Software" made by Simão Campos, student nº 1231859.
+This is a technical report for de Class Assignment 5, of the DevOps class from the "Switch - Curso de Especialização em Desenvolvimento de Software" made by Simão Campos, student nº 1231859.
 
 The following report is a technical document that provides a detailed account of the steps taken to complete the assignment, including the commands used, the issues encountered, and the solutions implemented. The tutorial section provides a step-by-step guide to the assignment tasks.
 
@@ -226,6 +226,9 @@ Commit the Jenkinsfile to the repository.
 
 5. Run the pipeline by clicking on "Build Now"
 6. Check the results of the pipeline (if successful, the build should be green)
+
+![Jenkins Pipeline](resources/piplines.png)
 7. Check the docker hub for the image created
 8. Check the docker desktop for the container running
 9. Access the application at http://localhost:8080/basic-0.0.1-SNAPSHOT
+10. The machines can be verified at the Docker Hub at the following addresses: The image is now available at https://hub.docker.com/r/1231859
