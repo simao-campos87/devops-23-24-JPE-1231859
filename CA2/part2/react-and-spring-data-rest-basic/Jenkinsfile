@@ -75,7 +75,7 @@ pipeline {
                 dir('ca2/part2/react-and-spring-data-rest-basic') {
                     script {
                         def dockerfileContent = """
-                        FROM openjdk:11-jre-slim
+                        FROM gradle:jdk21
                         WORKDIR /app
                         COPY build/libs/*.jar app.jar
                         EXPOSE 8080
