@@ -16,6 +16,11 @@ The following report is a technical document that provides a detailed account of
 2. Access the jenkins at http://localhost:9090
 3. Configure account and password
 4. Install the suggested plugins
+5. The gradlew file could need to be updated. If the pipeline breaks with a not recognizing "chmod +x ./gradlew" error, the following command must be run:
+```bash
+./gradlew wrapper --gradle-version 8.6
+```
+This could apply to both exercises.
 
 ### 1. Exercise 1
 
@@ -25,22 +30,22 @@ The following report is a technical document that provides a detailed account of
 pipeline {
 agent any
 stages {
-        stage('Checkout') {
+    stage('Checkout') {
             steps {
                 echo 'Checking out the code from the repository'
                 git branch: 'main', url: 'https://github.com/simao-campos87/devops-23-24-JPE-1231859.git'
             }
         }
     stage('Assemble') {
-                steps {
-                    echo 'Assembling...'
-                    dir('CA2/part1/gradle_basic_demo') {
-                        sh 'chmod +x ./gradlew'
-                        sh './gradlew clean assemble'
-                    }
+            steps {
+                echo 'Assembling...'
+                dir('CA2/part1/gradle_basic_demo') {
+                     sh 'chmod +x ./gradlew'
+                     sh './gradlew clean assemble'
                 }
             }
-        stage('Test') {
+        }
+    stage('Test') {
             steps {
                 echo 'Testing...'
                 dir('CA2/part1/gradle_basic_demo') {
@@ -49,7 +54,7 @@ stages {
                 }
             }
         }
-        stage('Archive') {
+    stage('Archive') {
             steps {
                 echo 'Archiving...'
                 dir('CA2/part1/gradle_basic_demo') {
@@ -88,8 +93,14 @@ Commit the Jenkinsfile to the repository.
 
 To do this go to "Manage Jenkins" -> "Manage Plugins" -> "Available" and search for the plugins. Select the plugins and click "Install without restart".
 
+2. Create an environment variable in Jenkins to store the Docker Hub credentials:
+    - Go to "Manage Jenkins" -> "Manage Credentials" -> "Jenkins" -> "Global credentials" -> "Add Credentials"
+    - Select "Username with password" as the kind of credentials
+    - Enter the username and password for Docker Hub
+    - Enter an ID for the credentials (e.g., docker-hub-credentials)
+    - Click "OK"
 
-2Create at the CA2-part2 folder a file named Jenkinsfile, to perform the steps of the exercise, with the following content:
+3. Create at the CA2-part2 folder a file named Jenkinsfile, to perform the steps of the exercise, with the following content:
 
 ```bash
 pipeline {
@@ -210,9 +221,9 @@ pipeline {
 
 Commit the Jenkinsfile to the repository.
 
-3. Open docker desktop and login to docker hub.
+4. Open docker desktop and login to docker hub.
 
-4. Create a new item in jenkins with the following steps:
+5. Create a new item in jenkins with the following steps:
     - Click on "New Item"
     - Enter the item name (ca2-part2 for the example)
     - Select "Pipeline" and click "OK"
@@ -224,11 +235,11 @@ Commit the Jenkinsfile to the repository.
     - In the "Script Path" field, enter the path to the Jenkinsfile, specific to the repository
     - Click "Save"
 
-5. Run the pipeline by clicking on "Build Now"
-6. Check the results of the pipeline (if successful, the build should be green)
+6. Run the pipeline by clicking on "Build Now"
+7. Check the results of the pipeline (if successful, the build should be green)
 
 ![Jenkins Pipeline](resources/piplines.png)
-7. Check the docker hub for the image created
-8. Check the docker desktop for the container running
-9. Access the application at http://localhost:8080/basic-0.0.1-SNAPSHOT
-10. The machines can be verified at the Docker Hub at the following addresses: The image is now available at https://hub.docker.com/r/1231859
+8. Check the docker hub for the image created
+9. Check the docker desktop for the container running
+10. Access the application at http://localhost:8080/basic-0.0.1-SNAPSHOT
+11. The machines can be verified at the Docker Hub at the following addresses: The image is now available at https://hub.docker.com/r/1231859
